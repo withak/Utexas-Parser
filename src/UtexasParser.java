@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,24 +7,28 @@ import java.util.Scanner;
 
 public class UtexasParser {
 
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Profile profile = new Profile();
 		try{
 			String infilename = "C:\\Users\\Erik\\Documents\\Long Term Static\\calero_longterm.OUT";
 			File inFile = new File(infilename);
 			Scanner in = new Scanner(inFile);
 			//BufferedReader in = new BufferedReader(new FileReader(infilename));
 			String str;
-			while ((str = in.nextLine()) != null){
-				//System.out.println(str);
+			
+			while (in.hasNextLine()){
+				str = in.nextLine();
 				String delim = "[ ]+"; // one or more spaces
 				if(str.contains("Profile Line No.")){
 					// found profile lines
 					//String[] tokens = str.split("[ ]+");
 					//int lineNum = Integer.parseInt(tokens[4]);
 					int lineNum = Integer.parseInt(str.split(delim)[4]);
+					int matNum = Integer.parseInt(str.split(delim)[9]);
 					//continue;
 					str = in.nextLine();
 					str = in.nextLine();
@@ -39,16 +41,21 @@ public class UtexasParser {
 					List<Point> points = new ArrayList<Point>();
 					
 					while (!str.equals("")){
+						if(str.split(delim).length == 1){
+							break;
+						}
 						float x = Float.parseFloat(str.split(delim)[1]);
 						float y = Float.parseFloat(str.split(delim)[2]);
 						Point point = new Point(x,y);
 						points.add(point);
 						str = in.nextLine();
 					}
-					String outLine = "No. "+lineNum+": "+lineDesc+" ["+points.size()+"]";
+					Line line = new Line(points,lineNum,matNum,lineDesc);
+					profile.lines.add(line);
+					String outLine = "No. "+line.lineNum+": "+line.desc+" ["+line.points.size()+"]";
 					System.out.println(outLine);
 					}
-				if(str.equals("\f")){
+				if(str.contains("UTEXAS")){
 					// end of profile lines
 					continue;
 				}
