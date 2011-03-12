@@ -14,7 +14,7 @@ public class UtexasParser {
 	public static void main(String[] args) {
 		Profile profile = new Profile();
 		try{
-			String infilename = "C:\\Users\\Erik\\Documents\\Long Term Static\\calero_longterm.OUT";
+			String infilename = "calero_longterm.OUT";
 			File inFile = new File(infilename);
 			Scanner in = new Scanner(inFile);
 			//BufferedReader in = new BufferedReader(new FileReader(infilename));

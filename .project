@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>calero_longterm.OUT</name>
+			<type>1</type>
+			<location>C:/Users/Erik/workspace/Utexas Parser/src/calero_longterm.OUT</location>
+		</link>
+	</linkedResources>
 </projectDescription>
