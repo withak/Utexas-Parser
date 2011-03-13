@@ -14,7 +14,7 @@ public class UtexasParser {
 	public static void main(String[] args) {
 		Profile profile = new Profile();
 		try{
-			String infilename = "calero_longterm.OUT";
+			String infilename = "/home/erik/calero_longterm.OUT";
 			File inFile = new File(infilename);
 			Scanner in = new Scanner(inFile);
 			//BufferedReader in = new BufferedReader(new FileReader(infilename));
@@ -25,11 +25,8 @@ public class UtexasParser {
 				String delim = "[ ]+"; // one or more spaces
 				if(str.contains("Profile Line No.")){
 					// found profile lines
-					//String[] tokens = str.split("[ ]+");
-					//int lineNum = Integer.parseInt(tokens[4]);
 					int lineNum = Integer.parseInt(str.split(delim)[4]);
 					int matNum = Integer.parseInt(str.split(delim)[9]);
-					//continue;
 					str = in.nextLine();
 					str = in.nextLine();
 					String lineDesc = str.split(": ")[1];
